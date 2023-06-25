@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="vueApp">
+        <input type="text" v-model="judulnya">
+        <h3>
+            Belajar {{ judulnya }}
+        </h3>
+        <button @click="makeItFun()">Make it fun</button>
+        <!-- bisa juga <button v-on:click="makeItFun()">Make it fun</button> -->
+
+
+        <button @click="check()">Check Subject</button>
+        <p>
+            Nilai {{ score }}
+        </p>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const sample = {
+            data() {
+                return {
+                    judulnya: 'Vue js',
+                    score: 0
+                }
+            },
+            methods: {
+                makeItFun() {
+                    this.judulnya = this.judulnya + " !!!!"
+                },
+                check() {
+                    if (this.judulnya === 'VueJS')
+                        this.score = 100
+                    else
+                        this.score = -50
+                }
+            }
+        }
+
+        Vue.createApp(sample).mount('#vueApp')
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Basic</title>
+</head>
+
+<body>
+    <div id="vueApp">
+        <h3>
+            Belajar {{ subject }}
+        </h3>
+        <p>Number: {{ number }}</p>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const sample = {
+            data() {
+                return {
+                    subject: 'Vue js',
+                    number: 1
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.number++
+                }, 500)
+            }
+        }
+
+        Vue.createApp(sample).mount('#vueApp')
+    </script>
+
+</body>
+
+</html>
