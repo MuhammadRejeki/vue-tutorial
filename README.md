@@ -6,4 +6,5 @@ Semua pembahasan tentang Vue JS dari basic sampai tingkat selanjutnya.
     Praktek menjalankan Vuejs via CDN, pengenalan starting vue, data dan mounted.
 02. Vue Metode
     (via CDN) Belajar metode button v-on:click, dan two way data binding with text.
-03. 
+03. Loop Key dan If Else
+    (via CDN) Menggunakan loop for dengan condition if else.
