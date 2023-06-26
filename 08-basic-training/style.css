@@ -1,0 +1,16 @@
+body{
+    font-family: sans-serif;
+    width: 80%;
+    margin:50px auto;
+}
+
+.box {
+    padding:10px;
+    background-color: rgb(213,213,213);
+    border-radius:10px;
+    margin:10px;
+}
+
+.ceklish {
+    background-color: rgb(137, 245, 155);
+}

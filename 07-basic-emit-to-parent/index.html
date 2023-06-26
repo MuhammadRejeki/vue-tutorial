@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emit To Parent</title>
+</head>
+<body>
+    <div id="vueApp">
+        <h3>Belajar Vue JS</h3>
+        <hr>
+        <div>
+            <blog-comp desc="Art 1 | This is the description bro..." @trigger-read="counting"></blog-comp>
+            <blog-comp desc="Art 2 | This is the description bro..." @trigger-read="counting"></blog-comp>
+            <blog-comp desc="Art 3 | Sudah baca 3x..." @trigger-read="counting(3)"></blog-comp>
+        </div>
+        <div>
+            <p>Total Dibaca adalah {{ total }}</p>
+        </div>
+    </div>
+
+
+    <script type="text/x-template" id="blog-template">
+        <p>
+            {{ desc }}
+            <button @click="$emit('triggerRead',1)">Sudah Baca</button>
+        </p>
+    </script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return {
+                    total:0
+                }
+            },
+            methods:{
+                counting(parameter){
+                    this.total = this.total + parameter;
+                }
+            }
+        });
+
+        app.component('blog-comp',{
+            props:['desc'],
+            template:'#blog-template'
+        });
+
+        app.mount("#vueApp");
+    </script>
+</body>
+</html>

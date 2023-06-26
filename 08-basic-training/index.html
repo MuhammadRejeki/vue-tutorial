@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Training</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>Training info : Buat daftar artikel dengan looping beserta fitur ceklish, lalu buat method untuk menambahkannya dan dapat menghitung berapa yang sudah di ceklish. Pastikan untuk menggunakan css pada element nya</p>
+    <p>Hasil :</p>
+    <div id="vuaApp">
+        <button @click="form = !form">Toggle Form</button>
+        <div v-show="form" style="border:1px solid black;padding:20px;">
+            <form @submit.prevent="submitForm">
+                <p>Add New Data</p>
+                <input type="text" name="judul" placeholder="judul">
+                <input type="text" name="desc" placeholder="desc">
+                <button type="submit">Tambah Data</button>
+            </form>
+        </div>
+        <ol>
+            <li v-for="art in article" class="box" :class="{ceklish:art.state}">
+                {{ art.judul }} | {{ art.desc }} 
+                <input type="checkbox" :checked="art.state" @change="art.state = !art.state">
+            </li>
+        </ol>
+
+
+        <p>Jumlah yang telah diceklish {{ totalcek }} </p>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        
+        const app = Vue.createApp({
+            data(){
+                return {
+                    article:[
+                        {judul:'vuejs',desc:'ini untuk frontend,bagus sekali.',state:false},
+                        {judul:'html',desc:'dasarnya menggunakan html',state:false}
+                    ],
+                    form:false
+                }
+            },
+            methods:{
+                submitForm(event){
+                    const els   = event.target.elements
+                    let xjudul   = els.judul.value
+                    let xdesc    = els.desc.value
+
+                    this.article.push({
+                        judul: xjudul,
+                        desc: xdesc,
+                        state: false
+                    })
+
+                    els.judul.value='';
+                    els.desc.value='';
+
+                    this.form = false;
+                }
+            },
+            computed:{
+                totalcek(){
+                    return this.article.filter((art) => art.state == true).length;
+                }
+            }
+        });
+
+
+        app.mount("#vuaApp");
+
+    </script>
+</body>
+</html>
