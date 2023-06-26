@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed Programming</title>
+</head>
+<body>
+    <div id="vueApp">
+        <h3>Membuat 1 variable data yang berasal dari hasil kondisi(expression) variable lain</h3>
+        
+        <input type="text" v-model="name">
+        <input type="text" v-model="age">
+
+        <p>Nama saya adalah {{ name }} dan umur saya {{ age }}</p>
+        <p>Berarti saya : {{ expression }}</p>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: 'Kiki',
+                    age: 27
+                }
+            },
+            computed: {
+                expression(){
+                    if(this.age > 50)
+                        return 'tua sekali'
+                    else
+                        return 'muda sekali'
+                }
+            }
+        });
+
+        app.mount("#vueApp");
+    </script>
+</body>
+</html>

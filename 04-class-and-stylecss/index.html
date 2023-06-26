@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class dan Style css</title>
+    <style>
+        .active{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="vueApp">
+        <h3>Belajar Vue JS</h3>
+
+        <ol class="list" :class="{active:isActive,'box-shadow':true}">
+            <li v-for="sub in subjects"> {{ sub.name }}</li>
+        </ol>
+        <button @click="activate()">Activate</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const sample = {
+            data(){
+                return {
+                    subjects: [
+                        {name: "Vue JS", code:"001"},
+                        {name: "React", code:"002"},
+                        {name: "Angular", code:"003"},
+                    ],
+                    isActive : false
+                }
+            },
+            methods:{
+                activate(){
+                    this.isActive = !this.isActive
+                },
+            }
+        }
+
+        Vue.createApp(sample).mount("#vueApp")
+    </script>
+</body>
+</html>
