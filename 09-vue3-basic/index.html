@@ -16,26 +16,77 @@
             margin: 20px;
             /* display: inline-block; */
         }
+
+        p h3 ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            background: #a19c9c;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li.fav {
+            background: #ff9ed2;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
+    <h1>Hello Vue</h1>
     <div id="vueApp">
-        <div v-if="showBooks">
-            <p>{{ title }} - {{ author }} - {{ age }}</p>
-        </div>
+        <hr>
 
+        <!-- Attribut Binding -->
+        <a v-bind:href="url" target="_blank">Go To Link</a><!-- or :href -->
+
+        <br>
         <button @click="fShow">
             <span v-if="showBooks">Hide It</span>
             <span v-else>Show It</span>
         </button>
+        <button @click="filter">
+            <span v-if="showFilter">Click to see all</span>
+            <span v-else>Click for favorite only</span>
+        </button>
+
+        <div v-if="showBooks">
+            <span v-if="showFilter">
+                <ul style="padding-left:0;">
+                    <li v-for="book in filteredBooks" :class="{fav:book.isFav}">
+                        <p>{{ book.year }}</p>
+                        <h3>{{ book.title }}</h3>
+                        <p>{{ book.author }}</p>
+                    </li>
+                </ul>
+            </span>
+            <span v-else>
+                <ul style="padding-left:0;">
+                    <li v-for="book in books" :class="{fav:book.isFav}" @click="toggleFav(book)">
+                        <p>{{ book.year }}</p>
+                        <h3>{{ book.title }}</h3>
+                        <p>{{ book.author }}</p>
+                    </li>
+                </ul>
+            </span>
+        </div>
+
+
 
         <!-- mouse events -->
         <hr>
         <div class="box" @mouseover="handleEvent($event,5)">mouseover (enter)</div>
         <div class="box" @mouseleave="handleEvent">mouseleave</div>
         <div class="box" @dblclick="handleEvent">double click</div>
-        <div class="box"></div>
+        <div class="box" @mousemove="handleMousemove">position - {{ x }} {{ y }}</div>
 
     </div>
 

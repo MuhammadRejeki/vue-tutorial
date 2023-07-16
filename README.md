@@ -18,3 +18,6 @@ Semua pembahasan tentang Vue JS dari basic sampai tingkat selanjutnya.
     Cara emit event ke parent
 8.  Basic Pelatihan
     Implementasi dari yang diajarkan dari nomor 1 - 7
+9.  Basic Vue3 New Explanation
+
+
