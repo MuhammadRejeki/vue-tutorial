@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop with Condition</title>
+</head>
+<body>
+    <div id="vueApp">
+        <h3>Belajar Vue JS</h3>
+
+
+        <!-- if condition berdasarkan data.status true or false -->
+        <ol v-if="status">
+            <li v-for="sub in subjects" :key="sub.code">{{ sub.name }} ( {{ sub.code }} )</li>
+        </ol>
+        <p v-else>No Subjects Yet (false)</p>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const sample = {
+            data() {
+                return {
+                    subjects: [
+                        {name: "Vue JS", code:"001"},
+                        {name: "React", code:"002"},
+                        {name: "Angular", code:"003"},
+                    ],
+                    status : false
+                }
+            },
+        }
+
+        Vue.createApp(sample).mount('#vueApp')
+    </script>
+</body>
+</html>
