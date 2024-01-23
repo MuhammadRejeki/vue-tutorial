@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengenal Object di Javascript</title>
+</head>
+<body>
+    <p>
+        Object pada javascript mempunyai propertinya masing masing, pada halaman ini saya akan melakukan pembuatan object dengan cara berbeda berbeda
+    </p>
+    <p>
+        Gunakan console untuk testing data object :
+        <ul>
+            <li>object literal : mahasiswa</li>
+            <li>function declaration : kiikun</li>
+            <li>constructor func : eko</li>
+            <li>function declaration + object.Create : sandhika</li>
+        </ul>
+    </p>
+    <script>
+        // 1 = Terlalu banyak kode jika menggunakan ini untuk membuat object let
+        let mahasiswa = {
+            nama: "Muhammad Rejeki", // object properti berupa string
+            energi: 10, // object properti berupa number
+            makan: function(porsi) { // object properti berupa method
+                this.energi += porsi;
+                console.log(`Selamat makan, ${this.nama}`);
+            }
+        }
+
+        // 2 = Kode tidak efisien krna semua method akan ditulis ulang walaupun tidak dipakai
+        function declareMahasiswa(nama,energi){
+            let bebas   = {};
+            bebas.nama      = nama;
+            bebas.energi    = energi;
+            bebas.makan     = function(porsi){
+                this.energi += porsi;
+                console.log(`Selamat makan, ${this.name}`);
+            }
+            return bebas;
+        }
+        let kiikun = declareMahasiswa("Kiikun",77)
+
+        // 3 = Kode tidak efisien krna semua method akan ditulis ulang walaupun tidak dipakai
+        function constructMahasiswa(nama,energi){
+            this.nama       = nama;
+            this.energi     = energi;
+            this.makan      = function(porsi){
+                this.energi += porsi;
+                console.log(`Selamat makan, ${this.nama}`);
+            }
+        }
+        let eko = new constructMahasiswa("Mas Eko",15);
+
+        // 4 = Kekurangannya jadi kita harus me manage 2 object
+        const methodMahasiswa = {
+            makan: function(val){
+                this.energi += val;
+            },
+            bermain: function(val){
+                this.energi -= val;
+            }
+        }
+        function dMahasiswa(nama,energi){
+            let bebas = Object.create(methodMahasiswa);
+            bebas.nama      = nama;
+            bebas.energi    = energi;
+            return bebas;
+        }
+        let sandhika = dMahasiswa("Sandhika Galih",10);
+
+    </script>
+</body>
+</html>

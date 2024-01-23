@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+</head>
+<body>
+    <p>
+        Pembelajaran Tentang Prototype:
+        <ol>
+            <li>Prototype itu sudah ada di bawaan default javascript contohnya di setiap object, array, bahkan number pun sebenarnya sudah ada</li>
+            <li>Sebelum dibungkus kedalam class (OOP), sebenarnya sistem yang berjalan dibelakang layar terdiri dari object dan juga prototype nya</li>
+            <li>tes object : kiikun</li>
+        </ol>
+    </p>
+    <p>
+        Pembelajaran Tentang Execution Context , Hoisting, Scope
+        <ol>
+            <li>Pada execution context javascript dimulai dengan 2 tahap yaitu creation phase (terdapat cara hoisting) dan execution phase</li>
+            <li>[Creation] cara kerja hoisting diawali dari penarikan data semua nama object dengan nilai undefined dan penarikan nama2 function beserta isinya</li>
+            <li>[Execution] mengeksekusi code program baris per baris dari atas sampai bawah</li>
+            <li>Scope terdiri dari Global dan Local</li>
+            <li>[Global Scope] object yang di define global (diluar function)</li>
+            <li>[Local Scope] object yang di define local (didalam function)</li>
+        </ol>
+    </p>
+    <script>
+        // Pembelajaran:
+        // 1. Prototype itu sudah ada di bawaan default javascript contohnya di setiap object, array, bahkan number pun sebenarnya sudah ada
+        // 2. Sebelum dibungkus kedalam class (OOP), sebenarnya sistem yang berjalan dibelakang layar terdiri dari object dan juga prototype nya
+
+
+        // Constructor function with prototype
+        // Tidak menumpukkan memori untuk method makan dan bermain dan penulisan hanya sekali
+        function Mahasiswa(nama, energi){
+            this.nama = nama;
+            this.energi = energi;
+        }
+        Mahasiswa.prototype.makan = function(val){
+            this.energi += val;
+        }
+        Mahasiswa.prototype.bermain = function(val){
+            this.energi -= val;
+        }
+
+        // object di atas sebenarnya sama saja seperti menulis class
+        class MahasiswaController {
+            constructor(nama,energi){
+                this.nama = nama;
+                this.energi = energi;
+            }
+            makan(val){
+                this.energi += val;
+            }
+            bermain(val){
+                this.energi -= val;
+            }
+        }
+
+        let rasa = ['asin','manis','pahit','hambar'];
+        let warna = {
+            0:'biru',
+            1:'merah'
+        };
+
+        let kiikun = new MahasiswaController("Kiki",11);
+        
+
+
+
+
+
+
+        // contoh tes code memahami execution context
+        function satu(){
+            var buah = 'apel'; //local object di define di dalam function (tidak berasal dari arguments atau global scope)
+            console.log(buah);    
+        }
+        function dua(){
+            console.log(buah);
+        }
+        console.log(buah);
+        var buah = 'manggis';
+        satu();
+        dua('jeruk');
+        console.log(buah);
+
+        //.// harusnya berisi 
+        // undefined
+        // apel
+        // manggis
+        // manggis
+    </script>
+</body>
+</html>
